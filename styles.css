@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg:       #0b0d11;
+  --s1:       #111419;
+  --s2:       #171b23;
+  --gold:     #c4952a;
+  --gold2:    rgba(196,149,42,0.14);
+  --gold3:    rgba(196,149,42,0.06);
+  --terra:    #b5614a;
+  --marble:   #e8dfc8;
+  --dim:      #6b6358;
+  --dim2:     #3a3530;
+  --olive:    #6b8a50;
+  --aegean:   #4a7faa;
+  --amethyst: #9070c0;
+  --border:   rgba(196,149,42,0.16);
+  --border2:  rgba(196,149,42,0.08);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--marble);font-family:'EB Garamond',Georgia,serif;min-height:100%;line-height:1.5;font-size:16px}
+input,button,select{font-family:'IBM Plex Mono',monospace}
+input::placeholder{color:var(--dim2)}
+input:focus{outline:none;border-color:rgba(196,149,42,0.5)!important;box-shadow:0 0 0 3px rgba(196,149,42,0.07)!important}
+button{cursor:pointer}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+
+/* ── Greek key divider ── */
+.meander {
+  display:flex;align-items:center;gap:12px;
+  color:var(--dim);font-size:11px;letter-spacing:0.12em;
+  font-family:'IBM Plex Mono',monospace;margin:0;
+}
+.meander::before,.meander::after{
+  content:'';flex:1;height:1px;
+  background:var(--border);
+}
+
+/* ── Animations ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.25)}100%{transform:scale(1)}}
+@keyframes glow{0%,100%{opacity:0.7}50%{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes laurel{0%{opacity:0;transform:scale(0.8)}60%{transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}
+.fade-up{animation:fadeUp 0.3s ease both}
+
+/* ── Reusable ── */
+.mono{font-family:'IBM Plex Mono',monospace}
+.cinzel{font-family:'Cinzel',serif}
+.card{background:var(--s1);border:1px solid var(--border);border-radius:14px;padding:18px}
+.pill{font-size:11px;padding:2px 9px;border-radius:20px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.03em}
+.nav-tab{border:none;border-radius:9px;padding:8px 0;font-size:12px;letter-spacing:0.08em;font-family:'Cinzel',serif;font-weight:600;transition:all 0.18s;flex:1}
+.btn-gold{background:var(--gold);color:#0b0d11;border:none;border-radius:10px;padding:10px 20px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:0.08em;font-weight:700;transition:opacity 0.15s}
+.btn-gold:hover{opacity:0.88}
+.btn-ghost{background:transparent;border:1px solid var(--border);border-radius:10px;padding:10px 18px;color:var(--dim);font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.07em;transition:all 0.15s}
+.btn-ghost:hover{border-color:rgba(196,149,42,0.35);color:var(--marble)}
+.domain-pill:hover{opacity:0.85}
+.habit-row{transition:background 0.18s,border 0.18s;cursor:pointer}
+.habit-row:hover{background:var(--s2)!important}
+.emoji-opt:hover{background:var(--gold2)!important}
+.action-btn:hover{opacity:0.75}
+
+/* ── Tooltip ── */
+#tooltip {
+  position: fixed;
+  background: var(--s2);
+  color: var(--marble);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  border: 1px solid var(--border);
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  transform: translate(-50%, -100%);
+  margin-top: -8px;
+  white-space: nowrap;
+}
+
+/* ── Mobile ── */
+.heatmap-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+}
+.heatmap-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+.heatmap-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+@media (max-width: 480px) {
+  .heatmap-scroll { padding-bottom: 12px; }
+  /* Make heatmap cells slightly larger on mobile for easier tapping/hovering */
+  .heatmap-cell { width: 14px !important; height: 14px !important; }
+  .heatmap-month { width: 14px !important; }
+}
